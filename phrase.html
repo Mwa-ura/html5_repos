@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Phrase-o-matic</title>
+    <meta charset="utf-8">
+    <style>
+      body { font-family: Verdana, Helvetica, sans-serif}
+    </style>
+    <script>
+      function makePhrase() {
+        var word1 = ["24/7", "multi-tier", "30,000 foot", "B-to-B", "win-win"];
+        var word2 = ["empowered", "value-added", "oriented", "focused", "aligned"];
+        var word3 = ["process", "solution", "tipping-point", "strategy", "vision"];
+        // Math computation
+        var rand1 = Math.floor(Math.random() * word1.length);
+        var rand2 = Math.floor(Math.random() * word2.length);
+        var rand3 = Math.floor(Math.random() * word3.length);
+        // Make phrase
+        var phrase = word1[rand1] + " " + word2[rand2] + " " + word3[rand3];
+        var phraseElement = document.getElementById("phrase");
+        phraseElement.innerHTML = phrase;
+      }
+      window.onload = makePhrase
+    </script>
+  </head>
+  <body>
+   <h1>Phrase-o-Matic says:</h1>
+   <p id="phrase"></p>
+  </body>
+</html>
