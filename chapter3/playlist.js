@@ -7,5 +7,13 @@ function init() {
 }
 
 function handleButtonClick() {
-    alert("Button was clicked!");
+    var textInput = document.getElementById("songTextInput")
+    var songName = textInput.value;
+    // Test for null value
+    if (songName == "") {
+        alert("Please add a song");
+    } else {
+        alert("Adding " + songName);
+    }
+    
 }
