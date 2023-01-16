@@ -1,0 +1,16 @@
+/* playlist css */
+body {
+       font-family: Helvetica, Vendana, Arial, sans-serif;
+}
+ul#playlist {
+              border: 1px solid black;
+              -webkit-border-radius: 10px;
+              -moz-border-radius: 10px;
+              padding: 0px;
+              list-style-type: none;
+}
+ul#playlist li {
+                 border-bottom: 1px solid black;
+                 padding: 10px;
+                 margin-top: 5px;
+}
