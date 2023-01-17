@@ -4,6 +4,7 @@ window.onload = init;
 function init() {
     var button = document.getElementById("addButton");
     button.onclick = handleButtonClick;
+    loadPlaylist();
 }
 
 function handleButtonClick() {
@@ -21,5 +22,6 @@ function handleButtonClick() {
         // Add the element to the DOM
         var ul = document.getElementById("playlist")
         ul.appendChild(li);
+        save(songName)
     }
 }
