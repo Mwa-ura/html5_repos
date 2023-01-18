@@ -1,0 +1,28 @@
+<DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Function and Objects</title>
+    <meta charset="utf-8">
+    <script>
+      var pointPerLevel = 1000;
+      function getAvatar(points) {
+        var level = points / pointPerLevel
+        if (level == 4) {
+          console.log("Teddy Bear")
+        }
+        else if ( level == 1 ) {
+          alert("Cat")
+        }
+        else if (level >= 2) {
+          alert("Gorilla")
+        }
+        else {
+          alert ("Fish")
+        }
+      } 
+      window.onload = getAvatar(4000)
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
