@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Dog constructor</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <script>
+            function Dog(name, breed, weight) {
+                this.name = name;
+                this.breed = breed;
+                this.weight = weight;
+                this.bark = function() {
+                    alert(this.name +"\'s weight is " +this.weight +"kg.");
+                };
+            }
+            var hamster = new Dog("Hamster", "mixed", 25);
+            hamster.bark()
+        </script>
+    </body>
+</html>
