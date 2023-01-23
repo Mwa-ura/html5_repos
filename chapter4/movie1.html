@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Movie - constructor</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <script>
+            function Movie(title, ratings, genre, show_times) {
+                this.title = title,
+                this.ratings = ratings,
+                this.genre = genre,
+                this.show_times = show_times,
+                this.getNextShowing = function() {
+                    var now = new Date().getTime();
+                    for (var i = 0; i < this.show_times.length; i++) {
+                            return alert("Next showing of "+this.title+ " is " +this.show_times[i]);
+                    }
+                };
+            }
+            var theMatrix = new Movie("The Matrix",
+                                "Sci-fi", 5,
+                                ["1:00pm", "3:55am", "4:00am"]);
+            var crawdads = new Movie("Where the crawdads sings",
+                                "Fiction", 5,
+                                ["5:00pm", "3:50am", "4:02am"]);
+            theMatrix.getNextShowing();
+            crawdads.getNextShowing();    
+        </script>
+    </body>
+</html>
