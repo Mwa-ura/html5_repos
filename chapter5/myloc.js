@@ -32,3 +32,21 @@ function displayError(error) {
     var div = document.getElementById("location");
     div.innerHTML = errorMessage;
 }
+// Compute distance between two locations
+function computeDistance(startCoords, destCoords) {
+    var startLatRads = degreesToRadians(startCoords.latitude);
+    var destLatRads = degreesToRadians(destCoords.latitude);
+    var startLongRads = degreesToRadians(startCoords.longitude);
+    var destLongRads = degreesToRadians(destCoords.longitude);
+    
+    var radius = 6371 // Earth radius
+    var distance = Math.acos(Math.sin(startLatRads) * Math.sin(destLatRads) +
+                             Math.cos(startLongRads) * Math.cos(destLongRads) *
+                             Math.cos(startLongRads - destLatRads)) * radius;
+    return distance;
+}
+// Convert degrees to radians 
+function degreesToRadians(degrees) {
+    var radians = (degrees * Math.PI)/180;
+    return radians
+}
