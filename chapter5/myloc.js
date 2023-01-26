@@ -21,6 +21,8 @@ function displayLocation(position) {
     // Create a div element
     var div = document.getElementById("location");
     div.innerHTML = "You are at Latitude " +latitude+ " and Longitude " +longitude+"."
+    // Add accuracy property
+    div.innerHTML += " (with accuracy of " +position.coords.accuracy+ " meters)."
     /*  Compute the distance and,
         Create div to display the distance between two locations
     */
