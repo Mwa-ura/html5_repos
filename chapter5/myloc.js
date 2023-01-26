@@ -1,3 +1,9 @@
+var otherLocation = {
+    latitude: 47.624851,
+    longitude: -122.52099
+};
+var map;
+
 window.onload = getMyLocation;
 
 function getMyLocation() {
@@ -15,6 +21,14 @@ function displayLocation(position) {
     // Create a div element
     var div = document.getElementById("location");
     div.innerHTML = "You are at Latitude " +latitude+ " and Longitude " +longitude+"."
+    /*  Compute the distance and,
+        Create div to display the distance between two locations
+    */
+    var km = computeDistance(position.coords, otherLocation);
+    var distance = document.getElementById("distance");
+    distance.innerHTML = "You\'re " +km+ "km from Wickedly HQ.";
+    // Display map image
+    showMap(position.coords);
 
 }
 // Error handler
@@ -50,3 +64,39 @@ function degreesToRadians(degrees) {
     var radians = (degrees * Math.PI)/180;
     return radians
 }
+// Display map image in the webpage
+function showMap(coords) {
+    var googleLatAndLong = new google.maps.LatLng(coords.latitude, coords.longitude);
+    var mapOptions = {
+        zoom: 10,
+        center: googleLatAndLong,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var myDiv = document.getElementById("map");
+    map = new google.maps.Map(myDiv, mapOptions);
+    // Call addMarker function
+    var title = "Your Location";
+    var content = "You are here: " +coords.latitude+ " , " +coords.longitude;
+    addMarker(map, googleLatAndLong, title, content);
+}
+// Display pin marker
+function addMarker(map, latLong, title, content) {
+    var markerOptions = {
+        position: latLong,
+        map: map,
+        title: title,
+        content: content,
+        clickable: true
+    };
+    var marker = new google.maps.Marker(markerOptions);
+    // Create info window object
+    var infoWindowOptions = {
+        content: content,
+        position: latLong
+    };
+    var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+    google.maps.event.addListener(marker, "click", function() {
+        infoWindow.open(map);
+    });
+}
+
