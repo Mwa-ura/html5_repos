@@ -3,12 +3,17 @@ var otherLocation = {
     longitude: -122.52099
 };
 var map;
+var watchId = null;
 
 window.onload = getMyLocation;
 
 function getMyLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(displayLocation, displayError);
+        // navigator.geolocation.getCurrentPosition(displayLocation, displayError);
+        var watchButton = document.getElementById("watch");
+        watchButton.onclick = watchLocation;
+        var clearWatchButton = document.getElementById("clearWatch");
+        clearWatchButton.onclick = clearWatch;
     }
     else {
         alert("Your browser doesn't support Geolocation API!");
@@ -20,7 +25,7 @@ function displayLocation(position) {
     var longitude = position.coords.longitude;
     // Create a div element
     var div = document.getElementById("location");
-    div.innerHTML = "You are at Latitude " +latitude+ " and Longitude " +longitude+"."
+    div.innerHTML = "You are at Latitude " +latitude+ " and Longitude " +longitude+".";
     // Add accuracy property
     div.innerHTML += " (with accuracy of " +position.coords.accuracy+ " meters)."
     /*  Compute the distance and,
@@ -68,7 +73,8 @@ function degreesToRadians(degrees) {
 }
 // Display map image in the webpage
 function showMap(coords) {
-    var googleLatAndLong = new google.maps.LatLng(coords.latitude, coords.longitude);
+    var googleLatAndLong = new google.maps.LatLng(coords.latitude, 
+        coords.longitude);
     var mapOptions = {
         zoom: 10,
         center: googleLatAndLong,
@@ -100,5 +106,11 @@ function addMarker(map, latLong, title, content) {
     google.maps.event.addListener(marker, "click", function() {
         infoWindow.open(map);
     });
+}
+// Watch location handler
+function watchLocation() {
+    watchId = navigator.geolocation.watchPosition(displayLocation, 
+        displayError);
+
 }
 
