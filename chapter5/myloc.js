@@ -25,7 +25,8 @@ function displayLocation(position) {
     var longitude = position.coords.longitude;
     // Create a div element
     var div = document.getElementById("location");
-    div.innerHTML = "You are at Latitude " +latitude+ " and Longitude " +longitude+".";
+    div.innerHTML = "You are at Latitude " +latitude+ " and Longitude " 
+        +longitude+".";
     // Add accuracy property
     div.innerHTML += " (with accuracy of " +position.coords.accuracy+ " meters)."
     /*  Compute the distance and,
@@ -35,8 +36,9 @@ function displayLocation(position) {
     var distance = document.getElementById("distance");
     distance.innerHTML = "You\'re " +km+ "km from Wickedly HQ.";
     // Display map image
-    showMap(position.coords);
-
+    if (map == null) {
+        showMap(position.coords);
+    }
 }
 // Error handler
 function displayError(error) {
@@ -111,6 +113,12 @@ function addMarker(map, latLong, title, content) {
 function watchLocation() {
     watchId = navigator.geolocation.watchPosition(displayLocation, 
         displayError);
-
+}
+// Clear watch handler
+function clearWatch() {
+    if (watchId) {
+        navigator.geolocation.clearWatch(watchId);
+        watchId = null;
+    }
 }
 
