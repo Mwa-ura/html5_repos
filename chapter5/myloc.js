@@ -34,7 +34,17 @@ function displayLocation(position) {
     */
     var km = computeDistance(position.coords, otherLocation);
     var distance = document.getElementById("distance");
-    distance.innerHTML = "You\'re " +km+ "km from Wickedly HQ.";
+    // distance.innerHTML = "You\'re " +km+ "km from Wickedly HQ.";
+    if (km < 0.1 ) {
+        distance.innerHTML = "You are on fire!";
+    } else {
+        if (prevKm < km ) {
+            distance.innerHTML = "You are getting hotter!";
+        } else {
+            distance.innerHTML = "You are getting colder...!";
+        }
+    }
+    prevKm = km;
     // Display map image
     if (map == null) {
         showMap(position.coords);
