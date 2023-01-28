@@ -4,6 +4,11 @@ var otherLocation = {
 };
 var map;
 var watchId = null;
+var options = {
+    enableHighAccuracy: true,
+    timeout: 100,
+    maximumAge: 0
+};
 
 window.onload = getMyLocation;
 
@@ -29,6 +34,7 @@ function displayLocation(position) {
         +longitude+".";
     // Add accuracy property
     div.innerHTML += " (with accuracy of " +position.coords.accuracy+ " meters)."
+    div.innerHTML += " found in " +options.timeout+ "milliseconds";
     /*  Compute the distance and,
         Create div to display the distance between two locations
     */
@@ -64,6 +70,11 @@ function displayError(error) {
     }
     var div = document.getElementById("location");
     div.innerHTML = errorMessage;
+    // Inform the user the time it takes to track his/her distance.
+    options.timeout += 100;
+    navigator.geolocation.getCurrentPosition(displayLocation, displayError,
+        options);
+    div.innerHTML += "...checking again with timeout=" +options.timeout;
 }
 // Compute distance between two locations
 function computeDistance(startCoords, destCoords) {
@@ -122,7 +133,7 @@ function addMarker(map, latLong, title, content) {
 // Watch location handler
 function watchLocation() {
     watchId = navigator.geolocation.watchPosition(displayLocation, 
-        displayError);
+        displayError, options);
 }
 // Clear watch handler
 function clearWatch() {
