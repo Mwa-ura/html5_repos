@@ -9,7 +9,7 @@ var options = {
     timeout: 100,
     maximumAge: 0
 };
-var prevCoords;
+var prevCoords = null;
 
 window.onload = getMyLocation;
 
@@ -68,7 +68,7 @@ function displayLocation(position) {
         var meters = computeDistance(position.coords, prevCoords) * 1000;
         if (meters > 20 ) {
             scrollMapToPosition(position.coords); // Add marker upon new position
-            prevCoords = null;
+            prevCoords = position.coords;
         }
     }
 }
