@@ -9,6 +9,7 @@ var options = {
     timeout: 100,
     maximumAge: 0
 };
+var prevCoords;
 
 window.onload = getMyLocation;
 
@@ -34,14 +35,19 @@ function displayLocation(position) {
         +longitude+".";
     // Add accuracy property
     div.innerHTML += " (with accuracy of " +position.coords.accuracy+ " meters)."
-    div.innerHTML += " found in " +options.timeout+ "milliseconds";
+    // set maximum timeout
+    if (options.timeout < 800) {
+        return null;
+    } else {
+        div.innerHTML += " found in " +options.timeout+ "milliseconds";
+    }
     /*  Compute the distance and,
         Create div to display the distance between two locations
     */
     var km = computeDistance(position.coords, otherLocation);
     var distance = document.getElementById("distance");
     // distance.innerHTML = "You\'re " +km+ "km from Wickedly HQ.";
-    if (km < 0.1 ) {
+    /* if (km < 0.1 ) {
         distance.innerHTML = "You are on fire!";
     } else {
         if (prevKm < km ) {
@@ -50,10 +56,20 @@ function displayLocation(position) {
             distance.innerHTML = "You are getting colder...!";
         }
     }
-    prevKm = km;
+    prevKm = km; */
     // Display map image
     if (map == null) {
         showMap(position.coords);
+        // get the cached location
+        prevCoords = position.coords;
+    }
+    else {
+        // Create in 20 metres interval marker.
+        var meters = computeDistance(position.coords, prevCoords) * 1000;
+        if (meters > 20 ) {
+            scrollMapToPosition(position.coords); // Add marker upon new position
+            prevCoords = null;
+        }
     }
 }
 // Error handler
@@ -141,5 +157,16 @@ function clearWatch() {
         navigator.geolocation.clearWatch(watchId);
         watchId = null;
     }
+}
+// Drop a new marker when a new location is detected.
+function scrollMapToPosition(coords) {
+    var latitude = coords.latitude;
+    var longitude = coords.longitude;
+    var latLong = new google.maps.LatLng(latitude, longitude);
+    
+    map.panTo(latLong);
+    addMarker(map, latLong, "Your new location", "You moved to " +latitude+ 
+        " , " +longitude);
+
 }
 
