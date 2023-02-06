@@ -19,5 +19,16 @@ function getSales() {
 // Sales function
 function updateSales(responseText) {
     var salesDiv = document.getElementById("balls");
-    salesDiv.innerHTML = responseText;
+    // salesDiv.innerHTML = responseText;
+    // Convert json file into a javaScript object
+    var sales = JSON.parse(responseText);
+    //  Iterate each item in the array
+    for (i = 0; i < sales.length; i++) {
+        var sale = sales[i];
+        var div = document.createElement("div");
+        div.setAttribute("class", "saleItem");
+        div.innerHTML = sale.name +" sold "+ sale.sales +" gumballs.";
+        salesDiv.appendChild(div);
+    }
+
 }
