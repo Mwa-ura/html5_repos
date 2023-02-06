@@ -1,16 +1,23 @@
-window.onload = function() {
-    var url = "http://localhost/sales.json";
+window.onload = init;
+function init() {
+    getSales();
+}
+function getSales() {
+    var url = "http://localhost/~mwaura/sales.json";
     var request = new XMLHttpRequest();
     request.open("GET", url);
     request.onload = function() {
         if (request.status == 200) {
             updateSales(request.responseText);
         }
+        else {
+            alert("Am going to nail this!");
+        }
     };
-    request.send(null);
+    request.send();
 }
 // Sales function
 function updateSales(responseText) {
-    var salesDiv = document.getElementById("sales");
+    var salesDiv = document.getElementById("balls");
     salesDiv.innerHTML = responseText;
 }
