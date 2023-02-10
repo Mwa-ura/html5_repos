@@ -1,6 +1,9 @@
-window.onload = init;
-function init() {
-    getSales();
+window.onload = function() {
+    setInterval(handleRefresh, 3000)
+}
+// Test refresh handler
+function handleRefresh() {
+    alert("Am live!!")
 }
 function getSales() {
     // var url = "http://localhost/~mwaura/sales.json";
