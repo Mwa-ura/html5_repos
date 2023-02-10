@@ -1,9 +1,12 @@
 window.onload = function() {
     setInterval(handleRefresh, 3000)
 }
-// Test refresh handler
+// Set up a jsonp url
 function handleRefresh() {
-    alert("Am live!!")
+    var url = "http://gumball.wickedlysmart.com/?callback=updateSales";
+    var newScriptElement = document.createElement("script");
+    newScriptElement.setAttribute("src", url);
+    newScriptElement.setAttribute("id", "jsonp");
 }
 function getSales() {
     // var url = "http://localhost/~mwaura/sales.json";
