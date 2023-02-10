@@ -3,10 +3,20 @@ window.onload = function() {
 }
 // Set up a jsonp url
 function handleRefresh() {
-    var url = "http://gumball.wickedlysmart.com/?callback=updateSales";
+    var url = "http://gumball.wickedlysmart.com/?callback=updateSales" + 
+    "&random=" + (new Date()).getTime();
     var newScriptElement = document.createElement("script");
     newScriptElement.setAttribute("src", url);
     newScriptElement.setAttribute("id", "jsonp");
+
+    var oldScriptElement = document.getElementById("jsonp");
+    var head = document.getElementsByTagName("head")[0];
+    if (oldScriptElement == null ) {
+        head.appendChild(newScriptElement);
+    }
+    else {
+        head.replaceChild(newScriptElement, oldScriptElement);
+    }
 }
 function getSales() {
     // var url = "http://localhost/~mwaura/sales.json";
