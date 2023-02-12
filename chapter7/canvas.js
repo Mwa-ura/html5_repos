@@ -1,11 +1,20 @@
 window.onload = function() {
-    var canvas = document.getElementById("tweetShirt");
+    var button = document.getElementById("previewButton");
+    canvas.onclick = previewHandler;
+}
+
+function previewHandler() {
+    var selectOj = document.getElementById("canvas");
     var context = canvas.getContext("2d");
-    // Check whether the browser supports canvas
-    if (context) {
-        context.fillRect(10, 10, 100, 100);
-    }
-    else {
-        alert("Your browser don't support canvas");
-    }
+    // Check which shape have been selected
+    // Get its index and assign it to variable shape
+    var selectOj = document.getElementById("shape");
+    var index = selectOj.selectedIdex;
+    var shape = selectOj[index].value;
+    // If shape selected is square render the 20 squares
+    if (shape == "square") {
+        for (var squares = 0; squares < 20; squares++ ) {
+            drawSquare(canvas, context)
+        }
+    };
 }
