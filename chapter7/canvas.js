@@ -6,6 +6,7 @@ window.onload = function() {
 function previewHandler() {
     var canvas = document.getElementById("tweetShirt");
     var context = canvas.getContext("2d");
+    fillBgColor(canvas, context); // Cover the previous color
     // Check which shape have been selected
     // Get its index and assign it to variable shape
     var selectOj = document.getElementById("shape");
@@ -28,4 +29,12 @@ function drawSquare(canvas, context) {
     var y = Math.floor(Math.random() * canvas.height);
     context.fillStyle = "lightblue"; // Shape color
     context.fillRect(x, y, w, w);
+}
+// Fill background color handler
+function fillBgColor(canvas, context) {
+    var selectOj = document.getElementById("bgColor");
+    var index = selectOj.selectedIndex;
+    var bgColor = selectOj[index].value;
+    context.fillStyle = bgColor;
+    context.fillRect(0, 0, canvas.width, canvas.height);
 }
