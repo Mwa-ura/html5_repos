@@ -18,8 +18,11 @@ function previewHandler() {
             drawSquare(canvas, context);
         }
     }
+    // If shape selected is circle render 20 circles
     else {
-        alert("Are you sure you don't want any shape!");
+        for (var circles = 0; circles < 20; circles++) {
+            drawCircle(canvas, context);
+        }
     }
 };
 // Function to calculate w, x and y axis
@@ -29,7 +32,7 @@ function drawSquare(canvas, context) {
     var y = Math.floor(Math.random() * canvas.height);
     context.fillStyle = "lightblue"; // Shape color
     context.fillRect(x, y, w, w);
-}
+};
 // Fill background color handler
 function fillBgColor(canvas, context) {
     var selectOj = document.getElementById("bgColor");
@@ -37,4 +40,19 @@ function fillBgColor(canvas, context) {
     var bgColor = selectOj[index].value;
     context.fillStyle = bgColor;
     context.fillRect(0, 0, canvas.width, canvas.height);
+};
+// Convert degrees to radians function
+function degreesToRadians(degrees) {
+    return (degrees * Math.PI/180);
 }
+ // Draw circle function
+function drawCircle(canvas, context) {
+    var radius = Math.floor(Math.random() * 40);
+    var x = Math.floor(Math.random() * canvas.width)
+    var y = Math.floor(Math.random() * canvas.height);
+    // Circle path
+    context.beginPath()
+    context.arc(x, y, radius, degreesToRadians(360), 0, true);
+    context.fillStyle = "lightblue";
+    context.fill();
+ }
