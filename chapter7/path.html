@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>paths and arcs</title>
+        <meta charset="utf-8">
+        <script>
+            window.onload = function() {
+                drawTriangle();
+            };
+            function drawTriangle() {
+                var canvas = document.getElementById("triangle");
+                var context = canvas.getContext("2d");
+                context.beginPath();
+                context.lineTo(100, 150);
+                context.lineTo(250, 75);
+                context.lineTo(125, 30);
+                context.closePath();
+                context.lineWidth = 2.5;
+                context.stroke();
+                context.fillStyle = "red";
+                // context.fill();
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Paths and arcs</h1>
+        <canvas id="triangle" width="600" height="400">
+            <p>Hey you, please update your browser!</p>
+        </canvas>
+    </body>
+</html>
