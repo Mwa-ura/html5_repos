@@ -9,7 +9,7 @@
     <body>
         <h1>TweetShirt</h1>
         <canvas id="tweetShirt" width="650" height="250">
-         <!-- <p>Hello friend, Please upgrade your browser.</p> -->
+            <p>Hello friend, Please upgrade your browser.</p>
         </canvas>
         <!-- User interface form -->
         <form>
@@ -45,5 +45,7 @@
                 <input type="button" id="previewButton" value="Preview">
             </p>
         </form>
+        <!--Twitter API-->
+        <script src="http://twitter.com/statuses/user_timeline/LucaMwaura.json? callback=updateTweets"></script>
     </body>
 </html>
