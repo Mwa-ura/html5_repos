@@ -24,6 +24,8 @@ function previewHandler() {
             drawCircle(canvas, context);
         }
     }
+    // Draw text after images have created
+    drawText(canvas, context);
 };
 // Function to calculate w, x and y axis
 function drawSquare(canvas, context) {
@@ -68,4 +70,22 @@ function drawCircle(canvas, context) {
         tweetsSelection.options.add(option);
     }
     tweetsSelection.selectedIndex = 0;
+ }
+ // Draw text function
+ function drawText(canvas, context) {
+    var selectObj = document.getElementById("foregroundColor");
+    var index = selectObj.selectedIndex;
+    var fgColor = selectObj[index].value;
+
+    context.fillStyle = fgColor;
+    context.font = "bold 1em sans-serif";
+    context.textAlign = "left";
+    context.fillText("I saw this tweet", 20, 40);
+
+    // Space for code that will draw tweet text
+    context.font = "bold 1em sans-serif";
+    context.textAlign = "right";
+    context.fillText("and all I got is this lousy t-shirt!", canvas.width-20,
+        canvas.height-40);
+
  }
