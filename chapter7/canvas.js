@@ -19,14 +19,19 @@ function previewHandler() {
         }
     }
     // If shape selected is circle render 20 circles
-    else {
+    else if (shape == "circles") {
         for (var circles = 0; circles < 20; circles++) {
             drawCircle(canvas, context);
         }
     }
+    else {
+        // alert to choose shape
+        alert("please choose shape.");
+    }    
     // Draw text after images have created
     drawText(canvas, context);
-};
+}
+
 // Function to calculate w, x and y axis
 function drawSquare(canvas, context) {
     var w = Math.floor(Math.random() * 40);
