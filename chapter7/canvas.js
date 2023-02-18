@@ -30,6 +30,8 @@ function previewHandler() {
     }    
     // Draw text after images have created
     drawText(canvas, context);
+    // Call the image last
+    drawBird(canvas, context);
 }
 
 // Function to calculate w, x and y axis
@@ -93,4 +95,13 @@ function drawCircle(canvas, context) {
     context.fillText("and all I got is this lousy t-shirt!", canvas.width-20,
         canvas.height-40);
 
+ }
+ // Add twitter image at the bottom left side
+ function drawBird(canvas, context) {
+    var tweetBird = new Image();
+    tweetBird.src = "twitterBird.png";
+    context.drawImage(tweetBird, 20, 120, 70, 70);
+    tweetBird.onload = function() {
+        context.drawImage(tweetBird, 20, 120, 70, 70);
+    };
  }
