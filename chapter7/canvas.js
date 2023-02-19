@@ -68,13 +68,15 @@ function drawCircle(canvas, context) {
     context.fill();
  }
  // Twitter API function
- function updateTweets(sales) { // Sales
+ function updateTweets(responseText) { // Sales
     var tweetsSelection = document.getElementById("tweets"); //change after
+    // Convert sales object to a JS object
+    var sales = JSON.parse(responseText);
     // Iterate the list of tweets received
     for (var i = 0; i < sales.length; i++) { // change
         tweet = sales[i];
         var option = document.createElement("option");
-        option.text = tweet.sales;
+        option.text = tweet.name;
         // option.value = tweet.text.replace("\"", "'"); change after done
         tweetsSelection.options.add(option);
     }
