@@ -32,6 +32,8 @@ function previewHandler() {
     drawText(canvas, context);
     // Call the image last
     drawBird(canvas, context);
+    // get sales
+    getSales();
 }
 
 // Function to calculate w, x and y axis
@@ -66,14 +68,14 @@ function drawCircle(canvas, context) {
     context.fill();
  }
  // Twitter API function
- function updateTweets(tweets) {
-    var tweetsSelection = document.getElementById("tweets");
+ function updateTweets(sales) { // Sales
+    var tweetsSelection = document.getElementById("tweets"); //change after
     // Iterate the list of tweets received
-    for (var i = 0; i < tweets.length; i++) {
-        tweet = tweets[i];
+    for (var i = 0; i < sales.length; i++) { // change
+        tweet = sales[i];
         var option = document.createElement("option");
-        option.text = tweet.text;
-        option.value = tweet.text.replace("\"", "'");
+        option.text = tweet.sales;
+        // option.value = tweet.text.replace("\"", "'"); change after done
         tweetsSelection.options.add(option);
     }
     tweetsSelection.selectedIndex = 0;
@@ -105,3 +107,18 @@ function drawCircle(canvas, context) {
         context.drawImage(tweetBird, 20, 120, 70, 70);
     };
  }
+function getSales() {
+    var url = "http://localhost/~mwaura/sales.json";
+   // var url = "http://gumball.wickedlysmart.com/gamball/gamball.html";
+    var request = new XMLHttpRequest();
+    request.open("GET", url);
+    request.onload = function() {
+        if (request.status == 200) {
+            updateTweets(request.responseText);
+        }
+        else {
+            alert("Am going to nail this!");
+        }
+    };
+    request.send(null);
+}
