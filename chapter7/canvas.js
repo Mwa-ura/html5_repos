@@ -1,6 +1,7 @@
 window.onload = function() {
     var button = document.getElementById("previewButton");
     button.onclick = previewHandler;
+    getSales();
 };
 
 function previewHandler() {
@@ -27,13 +28,13 @@ function previewHandler() {
     else {
         // alert to choose shape
         alert("please choose shape.");
-    }    
+    }
     // Draw text after images have created
     drawText(canvas, context);
     // Call the image last
     drawBird(canvas, context);
     // get sales
-    getSales();
+    
 }
 
 // Function to calculate w, x and y axis
@@ -76,7 +77,7 @@ function drawCircle(canvas, context) {
     for (var i = 0; i < sales.length; i++) { // change
         tweet = sales[i];
         var option = document.createElement("option");
-        option.text = tweet.name;
+        option.text = tweet.name +" made "+ tweet.sales;
         // option.value = tweet.text.replace("\"", "'"); change after done
         tweetsSelection.options.add(option);
     }
@@ -93,7 +94,13 @@ function drawCircle(canvas, context) {
     context.textAlign = "left";
     context.fillText("I saw this tweet", 20, 40);
 
-    // Space for code that will draw tweet text
+    // Draw tweet text
+    selectObj = document.getElementById("tweets");
+    index = selectObj.selectedIndex;
+    var tweet = selectObj[index].value;
+    context.font = "italic 1.2em serif";
+    context.fillText(tweet, 30, 100);
+
     context.font = "bold 1em sans-serif";
     context.textAlign = "right";
     context.fillText("and all I got is this lousy t-shirt!", canvas.width-20,
