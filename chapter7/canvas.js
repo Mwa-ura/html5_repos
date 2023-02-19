@@ -111,9 +111,9 @@ function drawCircle(canvas, context) {
  function drawBird(canvas, context) {
     var tweetBird = new Image();
     tweetBird.src = "twitterBird.png";
-    context.drawImage(tweetBird, 20, 120, 70, 70);
+    context.drawImage(tweetBird, 20, 1500, 70, 70);
     tweetBird.onload = function() {
-        context.drawImage(tweetBird, 20, 120, 70, 70);
+        context.drawImage(tweetBird, 20, 150, 70, 70);
     };
  }
 function getSales() {
