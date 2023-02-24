@@ -4,15 +4,16 @@ var video;
 
 window.onload = function() {
     playlist = [
-        "video/preroll.mp4",
-        "video/areyoupopular.mp4",
-        "video/destinationearth.mp4"
+        "video/preroll",
+        "video/areyoupopular",
+        "video/destinationearth"
     ];
     video = document.getElementById("video");
     video.addEventListener("ended", nextVideo, false);
-    video.src = playlist[position];
+    video.src = playlist[position] + getFormatExtension();
     video.load();
     video.play();
+    alert("Playing" +video.currentSrc);
 }
 // End video handler
 function nextVideo() {
@@ -20,7 +21,20 @@ function nextVideo() {
     if (position >= playlist.length) {
         position = 0;
     }
-    video.src = playlist[position];
+    video.src = playlist[position] + getFormatExtension();
     video.load();
     video.play();
-} 
+    alert("Playing " +video.currentSrc );
+}
+// Get the video type
+function getFormatExtension() {
+    if (video.canPlayType("video/mp4") != "") {
+        return ".mp4";
+    }
+    else if (video.canPlayType("video/webm") != "") {
+        return ".webm";
+    }
+    else if (video.canPlayType("video/ogg") != "") {
+        return ".ogv";
+    }
+}
