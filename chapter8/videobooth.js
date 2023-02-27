@@ -61,3 +61,16 @@ function setVideo(e) {
         pushUnPushButtons("video2", ["video1"])
     }
 }
+// Helper functions 
+function pushUnPushButtons(idToPush, idArrayToUnPush) {
+    if (idToPush != "") {
+        var anchor = document.getElementById(idToPush);
+        var theClass = anchor.getAttribute("class");
+        if (!theClass.indexOf("selected") >= 0) {
+            theClass = theClass +" selected";
+            anchor.setAttribute("class", theClass);
+            var newImage = "url(images/" +idToPush+ "pressed.png)";
+            anchor.style.backgroundImage = newImage;
+        }
+    }
+}
