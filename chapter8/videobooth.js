@@ -16,3 +16,26 @@ window.onload = function() { // Invoked when page is fully loaded
     pushUnPushButtons("video1", []);
     pushUnPushButtons("normal", []);
 }
+function handleControl(e) {
+    var id = e.target.getAttribute("id");
+    if (id == "play") {
+        pushUnPushButtons("play", ["pause"]);
+    }
+    else if (id == "pause") {
+        pushUnPushButtons("pause", ["play"]);
+    }
+    else if (id == "loop") {
+        if (isButtonPushed("loop")) {
+            pushUnPushButtons("", ["loop"]);
+        } else {
+            pushUnPushButtons(["loop"], "");
+        }   
+    }
+    else if (id = "mute") {
+        if (isButtonPushed("mute")) { 
+            pushUnPushButtons("", ["mute"]);
+        } else {
+            pushUnPushButtons(["mute"], "")
+        }
+    }
+}
