@@ -73,4 +73,19 @@ function pushUnPushButtons(idToPush, idArrayToUnPush) {
             anchor.style.backgroundImage = newImage;
         }
     }
+    for (var i = 0; i < idArrayToUnPush.length; i++) {
+        var anchor = document.getElementById(idArrayToUnPush[i]);
+        var theClass = anchor.getAttribute("class");
+        if (theClass.indexOf("selected") >=0) {
+            theClass = theClass.replace("selected", "");
+            anchor.setAttribute("class", theClass);
+            anchor.style.backgroundImage = "";
+        }
+    }
+}
+// Check if the button is clicked
+function isButtonPushed(id) {
+    var anchor = document.getElementById(id);
+    var theClass = anchor.getAttribute("class");
+    return (theClass.indexOf("selected") >= 0);
 }
