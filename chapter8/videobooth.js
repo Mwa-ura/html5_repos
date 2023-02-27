@@ -52,3 +52,12 @@ function setEffects(e) {
         pushUnPushButtons("scifi", ["normal", "western", "noir"]);
     }
 }
+// set Video handler
+function setVideo(e) {
+    var id = e.target.getAttribute("id");
+    if (id == "video1") {
+        pushUnPushButtons("video1", ["video2"]);
+    } else if (id == "video2") {
+        pushUnPushButtons("video2", ["video1"])
+    }
+}
