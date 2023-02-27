@@ -39,3 +39,16 @@ function handleControl(e) {
         }
     }
 }
+// Set effects handler
+function setEffects(e) {
+    var id = e.target.getAttribute("id");
+    if (id == "normal") {
+        pushUnPushButtons("normal", ["western", "noir", "scifi"]);
+    } else if (id == "western") {
+        pushUnPushButtons("western", ["normal", "noir", "scifi"]);
+    } else if (id == "noir") {
+        pushUnPushButtons("noir", ["normal", "western", "scifi"]);
+    } else if (id == "scifi") {
+        pushUnPushButtons("scifi", ["normal", "western", "noir"]);
+    }
+}
