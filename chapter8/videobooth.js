@@ -4,7 +4,7 @@ window.onload = function() { // Invoked when page is fully loaded
     // Video objects
     var video = document.getElementById("video");
     video.src = videos.video1 + getFormatExtension()
-    video.onload();
+    video.load();
     // Control links
     var controlsLinks = document.querySelectorAll("a.control");
     for (var i = 0; i < controlsLinks.length; i++) {
