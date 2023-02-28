@@ -58,7 +58,7 @@ function setVideo(e) {
     if (id == "video1") {
         pushUnPushButtons("video1", ["video2"]);
     } else if (id == "video2") {
-        pushUnPushButtons("video2", ["video1"])
+        pushUnPushButtons("video2", ["video1"]);
     }
 }
 // Helper functions 
