@@ -1,4 +1,11 @@
+var videos = {video1: "video/demovideo1", video2:"video/demovideo2"};
+
 window.onload = function() { // Invoked when page is fully loaded
+    // Video objects
+    var video = document.getElementById("video");
+    video.src = videos.video1 + getFormatExtension()
+    video.onload();
+    // Control links
     var controlsLinks = document.querySelectorAll("a.control");
     for (var i = 0; i < controlsLinks.length; i++) {
         controlsLinks[i].onclick = handleControl;
@@ -88,4 +95,15 @@ function isButtonPushed(id) {
     var anchor = document.getElementById(id);
     var theClass = anchor.getAttribute("class");
     return (theClass.indexOf("selected") >= 0);
+}
+// Get the video type
+function getFormatExtension() {
+    var video = document.getElementById("video");
+    if (video.canPlayType("video/mp4") != "") {
+        return ".mp4";
+    } else if (video.canPlayType("video/webm") != "") {
+        return ".webm";
+    } else if (video.canPlayType("video/ogg") != "") {
+        return ".ogv";
+    }
 }
