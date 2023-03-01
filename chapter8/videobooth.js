@@ -22,6 +22,7 @@ window.onload = function() { // Invoked when page is fully loaded
     }
     pushUnPushButtons("video1", []);
     pushUnPushButtons("normal", []);
+    video.addEventListener("ended", endedHandler, false); // Check if video has ended
 }
 function handleControl(e) {
     var id = e.target.getAttribute("id");
@@ -43,7 +44,7 @@ function handleControl(e) {
         } else {
             pushUnPushButtons(["loop"], "");
         }
-        video.loop() = !video.loop;
+        video.loop = !video.loop;
     }
     else if (id = "mute") {
         if (isButtonPushed("mute")) { 
@@ -51,7 +52,7 @@ function handleControl(e) {
         } else {
             pushUnPushButtons(["mute"], "")
         }
-        video.muted();
+        video.muted = !video.muted;
     }
 }
 // Set effects handler
@@ -70,11 +71,16 @@ function setEffects(e) {
 // set Video handler
 function setVideo(e) {
     var id = e.target.getAttribute("id");
+    var video = document.getElementById("video");
     if (id == "video1") {
         pushUnPushButtons("video1", ["video2"]);
     } else if (id == "video2") {
         pushUnPushButtons("video2", ["video1"]);
     }
+    video.src = videos[id] + getFormatExtension();
+    video.load();
+    video.play();
+    pushUnPushButtons("play", ["pause"]);
 }
 // Helper functions 
 function pushUnPushButtons(idToPush, idArrayToUnPush) {
@@ -114,4 +120,8 @@ function getFormatExtension() {
     } else if (video.canPlayType("video/ogg") != "") {
         return ".ogv";
     }
+}
+// Ended video handler
+function endedHandler() {
+    pushUnPushButtons("", ["play"]);
 }
