@@ -35,13 +35,15 @@ function handleControl(e) {
     }
     else if (id == "pause") {
         pushUnPushButtons("pause", ["play"]);
+        video.pause();
     }
     else if (id == "loop") {
         if (isButtonPushed("loop")) {
             pushUnPushButtons("", ["loop"]);
         } else {
             pushUnPushButtons(["loop"], "");
-        }   
+        }
+        video.loop() = !video.loop;
     }
     else if (id = "mute") {
         if (isButtonPushed("mute")) { 
@@ -49,6 +51,7 @@ function handleControl(e) {
         } else {
             pushUnPushButtons(["mute"], "")
         }
+        video.muted();
     }
 }
 // Set effects handler
