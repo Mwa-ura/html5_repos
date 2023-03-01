@@ -25,8 +25,13 @@ window.onload = function() { // Invoked when page is fully loaded
 }
 function handleControl(e) {
     var id = e.target.getAttribute("id");
+    var video = document.getElementById("video");
     if (id == "play") {
         pushUnPushButtons("play", ["pause"]);
+        if (video.ended) { // Check if the video has ended
+            video.load(); // load if it has ended
+        }
+        video.play();
     }
     else if (id == "pause") {
         pushUnPushButtons("pause", ["play"]);
