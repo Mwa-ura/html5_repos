@@ -24,6 +24,7 @@ window.onload = function() { // Invoked when page is fully loaded
     pushUnPushButtons("video1", []);
     pushUnPushButtons("normal", []);
     video.addEventListener("ended", endedHandler, false); // Check if video has ended
+    video.addEventListener("play", processFrame, false); // check if video play mode
 }
 function handleControl(e) {
     var id = e.target.getAttribute("id");
@@ -129,4 +130,15 @@ function getFormatExtension() {
 // Ended video handler
 function endedHandler() {
     pushUnPushButtons("", ["play"]);
+}
+// Function to process video for effects implementation
+function processFrame() {
+    var video = document.getElementById("video");
+    if (video.paused || video.ended) {
+        return;
+    }
+    var bufferCanvas = document.getElementById("buffer");
+    var displayCanvas = document.getElementById("display");
+    var buffer = bufferCanvas.getContext("2d");
+    var display = displayCanvas.getContext("2d");
 }
