@@ -1,4 +1,5 @@
 var videos = {video1: "video/demovideo1", video2:"video/demovideo2"};
+var effectFunction = null;
 
 window.onload = function() { // Invoked when page is fully loaded
     // Video objects
@@ -60,12 +61,16 @@ function setEffects(e) {
     var id = e.target.getAttribute("id");
     if (id == "normal") {
         pushUnPushButtons("normal", ["western", "noir", "scifi"]);
+        effectFunction = null;
     } else if (id == "western") {
         pushUnPushButtons("western", ["normal", "noir", "scifi"]);
+        effectFunction = western;
     } else if (id == "noir") {
         pushUnPushButtons("noir", ["normal", "western", "scifi"]);
+        effectFunction = noir;
     } else if (id == "scifi") {
         pushUnPushButtons("scifi", ["normal", "western", "noir"]);
+        effectFunction = scifi;
     }
 }
 // set Video handler
