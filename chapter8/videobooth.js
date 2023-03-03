@@ -141,4 +141,26 @@ function processFrame() {
     var displayCanvas = document.getElementById("display");
     var buffer = bufferCanvas.getContext("2d");
     var display = displayCanvas.getContext("2d");
+    // Grab the video buffer frame/context
+    buffer.drawImage(video, 0, 0, bufferCanvas.width, bufferCanvas.height);
+    var frame = buffer.getImageData(0, 0, bufferCanvas.width, bufferCanvas.height);
+    // Process the buffer
+    var length = frame.data.length / 4;
+    for (var i = 0; i < length; i++) {
+        var r = frame.data[i * 4 + 0];
+        var g = frame.data[i * 4 + 1];
+        var b = frame.data[i * 4 + 2];
+    }
+    // Run the the function as soon as possible
+    setTimeout(processFrame, 0);
+    noir(frame, r, g, b, data);
+
+}
+// The noir effect
+function noir(pos, r, g, b, data) {
+    var brightness = (3*r + 4*g + b) >>> 3;
+    if (brightness < 0) brightness = 0;
+    data[pos * 4 + 0] = brightness;
+    data[pos * 4 + 0] = brightness;
+    data[pos * 4 + 2] = brightness;
 }
