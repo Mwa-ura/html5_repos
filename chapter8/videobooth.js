@@ -150,11 +150,16 @@ function processFrame() {
         var r = frame.data[i * 4 + 0];
         var g = frame.data[i * 4 + 1];
         var b = frame.data[i * 4 + 2];
+        if (effectFunction) {
+            effectFunction(i, r, g, b, frame.data);
+        }
+        else if (effectFunction == noir) {
+            effectFunction(i, r, g, b, frame.data);
+        }
     }
+    display.putImageData(frame, 0, 0);
     // Run the the function as soon as possible
     setTimeout(processFrame, 0);
-    noir(frame, r, g, b, data);
-
 }
 // The noir effect
 function noir(pos, r, g, b, data) {
