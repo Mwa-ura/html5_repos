@@ -156,6 +156,12 @@ function processFrame() {
         else if (effectFunction == noir) {
             effectFunction(i, r, g, b, frame.data);
         }
+        else if (effectFunction == western) {
+            effectFunction(i, r, g, b, frame.data);
+        }
+        else if (effectFunction == scifi) {
+            effectFunction(i, r, g, b, frame.data);
+        }
     }
     display.putImageData(frame, 0, 0);
     // Run the the function as soon as possible
@@ -166,6 +172,36 @@ function noir(pos, r, g, b, data) {
     var brightness = (3*r + 4*g + b) >>> 3;
     if (brightness < 0) brightness = 0;
     data[pos * 4 + 0] = brightness;
-    data[pos * 4 + 0] = brightness;
+    data[pos * 4 + 1] = brightness;
     data[pos * 4 + 2] = brightness;
+}
+// Western effect
+function western(pos, r, g, b, data) {
+    var brightness = (3*r + 4*g + b) >>> 3;
+    data[pos * 4 + 0] = brightness + 40;
+    data[pos * 4 + 1] = brightness +20;
+    data[pos * 4 + 2] = brightness -20;
+}
+// Scifi effect
+function scifi(pos, r, g, b, data) {
+    var offset = pos * 4;
+    data[offset] = Math.round(255 - r);
+    data[offset +1] = Math.round(255 - g);
+    data[offset +2] = Math.round(255 - b);
+}
+// Cartoon caricature 
+function bwcartoon(pos, r, g, b, outputData) {
+    var offset = pos * 4;
+    if (outputData[offset] > 120) {
+        outputData[offset] = 80;
+        outputData[++offset] = 80;
+        outputData[++offset] = 80;
+    }
+    else {
+        outputData[offset] = 255;
+        outputData[offset++] = 255;
+        outputData[offset++] = 255;
+    }
+    outputData[++offset] = 255;
+    ++offset;
 }
