@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Note to self</title>
+        <meta charset="utf-8">
+        <script>
+            localStorage.setItem("string_1", "Pick up dry cleaning");
+            localStorage.setItem("string_2", "Cancel cable TV, who needs it now!");
+            localStorage.setItem("string_3", "Just getting started with a new chapter");
+            var string = localStorage.getItem("string_1");
+            // alert(string);
+            localStorage.setItem("price1", 9.99);
+            var price = parseFloat(localStorage.getItem("price1"));
+            price += 1;
+            localStorage.setItem("price2", price);
+            alert(localStorage.getItem("price2"));
+        </script>
+    </head>
+</html>
