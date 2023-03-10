@@ -1,4 +1,7 @@
-var videos = {video1: "video/demovideo1", video2:"video/demovideo2"};
+var videos = {
+    video1: "http://localhost/~mwaura/demovideo1", 
+    video2: "http://localhost/~mwaura/demovideo2"
+};
 var effectFunction = null;
 
 window.onload = function() { // Invoked when page is fully loaded
@@ -25,6 +28,7 @@ window.onload = function() { // Invoked when page is fully loaded
     pushUnPushButtons("normal", []);
     video.addEventListener("ended", endedHandler, false); // Check if video has ended
     video.addEventListener("play", processFrame, false); // check if video play mode
+    video.addEventListener("error", errorHandler, false); // Check errors in playing
 }
 function handleControl(e) {
     var id = e.target.getAttribute("id");
@@ -190,7 +194,7 @@ function scifi(pos, r, g, b, data) {
     data[offset +2] = Math.round(255 - b);
 }
 // Cartoon caricature 
-function bwcartoon(pos, r, g, b, outputData) {
+function bwCartoon(pos, r, g, b, outputData) {
     var offset = pos * 4;
     if (outputData[offset] > 120) {
         outputData[offset] = 80;
@@ -204,4 +208,12 @@ function bwcartoon(pos, r, g, b, outputData) {
     }
     outputData[++offset] = 255;
     ++offset;
+}
+// Function to check errors
+function errorHandler() {
+    var video = document.getElementById("video");
+    if (video.error) {
+        video.poster = "images/technicaldifficulties.jpg";
+        alert(video.error.message +" "+ video.error.code);
+    }
 }
