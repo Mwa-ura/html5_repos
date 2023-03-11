@@ -4,16 +4,28 @@
         <title>Note to self</title>
         <meta charset="utf-8">
         <script>
+            window.onload = setStrings;
+            function setStrings() {
             localStorage.setItem("string_1", "Pick up dry cleaning");
             localStorage.setItem("string_2", "Cancel cable TV, who needs it now!");
             localStorage.setItem("string_3", "Just getting started with a new chapter");
             var string = localStorage.getItem("string_1");
-            // alert(string);
+            //alert(string);
             localStorage.setItem("price1", 9.99);
             var price = parseFloat(localStorage.getItem("price1"));
             price += 1;
             localStorage.setItem("price2", price);
-            alert(localStorage.getItem("price2"));
+            //alert(localStorage.getItem("price2"));
+            localStorage["key1"] = "Some text";
+            var key = localStorage["key1"];
+            //alert(key);
+            // Iterate values in the localStorage Array
+            for (var i = 0; i < localStorage.length; i++) {
+                var key = localStorage.key(i);
+                var value = localStorage[key];
+                alert(value);
+            }
+        }
         </script>
     </head>
 </html>
