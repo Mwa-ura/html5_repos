@@ -6,7 +6,7 @@ function init() {
     button.onclick = createSticky;
     // Create an Array
     var stickiesArray = getStickiesArray();
-    for (var i = 0; i < localStorage.length; i++) {
+    for (var i = 0; i < stickiesArray.length; i++) {
         var key = stickiesArray[i];
         var value = localStorage.getItem(key);
         addStickyToDOM(value);
