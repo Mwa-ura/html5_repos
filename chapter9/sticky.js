@@ -4,12 +4,10 @@ window.onload = init;
 function init() {
     var button = document.getElementById("add_button");
     button.onclick = createSticky;
+    // Create an Array
+    var stickiesArray = getStickiesArray();
     for (var i = 0; i < localStorage.length; i++) {
-        var key = localStorage.key(i);
-        /*if (key.substring(0, 6) == "sticky") {
-            var value = localStorage.getItem(key);
-            addStickyToDOM(value);
-        } */
+        var key = stickiesArray[i];
         var value = localStorage.getItem(key);
         addStickyToDOM(value);
     }
@@ -26,9 +24,25 @@ function addStickyToDOM(value) {
 }
 // Create Sticky function
 function createSticky() {
+    // Create date object to make sticky more unique
+    var stickiesArray = getStickiesArray();
+    var currentDate = new Date();
+    var time = currentDate.getTime();
+    var key = "sticky_" +time;
     var value = document.getElementById("note_text").value;
-    var key = "sticky_" +localStorage.length;
     localStorage.setItem(key, value);
+    stickiesArray.push(key);
+    localStorage.setItem("stickiesArray", JSON.stringify(stickiesArray));  
     addStickyToDOM(value);
-
+}
+// Get sticky function
+function getStickiesArray() {
+    var stickiesArray = localStorage.getItem("stickiesArray");
+    if (!stickiesArray) {
+        stickiesArray = [];
+        localStorage.setItem("stickiesArray", JSON.stringify(stickiesArray));
+    } else {
+        stickiesArray = JSON.parse(stickiesArray);
+    }
+    return stickiesArray;
 }
