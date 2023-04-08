@@ -1,9 +1,10 @@
 onmessage = pingPong;
 function pingPong(event) {
-    if (event == "ping") {
+    if (event.data == "ping") {
         postMessage('Pong');
     }
+    /*
     else {
         postMessage("Ponki");
-    }
+    } */
 }
