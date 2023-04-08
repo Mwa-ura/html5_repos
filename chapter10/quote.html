@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Quotes</title>
+        <meta charset="en">
+    </head>
+    <body>
+        <h1>Testing HTML Web Workers</h1>
+        <p id="quote">
+            <script>
+                var worker = new Worker("quote.js");
+                worker.onmessage = function (event) {
+                    var quote = document.getElementById("quote");
+                    quote.innerHTML = event.data;
+                }
+            </script>
+        </p>
+    </body>
+</html>
