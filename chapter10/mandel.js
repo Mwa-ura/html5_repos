@@ -9,7 +9,7 @@ function init() {
     // Iterate though the workers.
     for (var i = 0; i < numberOfWorkers; i++) {
         // Create new worker
-        var worker = new Worker("worker.js");
+        var worker = new Worker("workers.js");
         // Set each worker's message handler
         worker.onmessage = function(event) {
             processWork(event.target, event.data);
@@ -37,4 +37,9 @@ function startWorkers() {
             nextRow++; 
         }
     }
+}
+// Hand results to drawRow to draw pixel in the canvas.
+function processWork(worker, workerResults) {
+    drawRow(workerResults);
+    reassignWorker(worker);
 }
