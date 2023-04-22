@@ -18,7 +18,7 @@ var palette = [];
 function createTask(row) {
     var task = { 
         row: row,
-        width: rawData.width,
+        width: rowData.width,
         generation: generation,
         r_min: r_min,
         r_max: r_max,
