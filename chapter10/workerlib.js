@@ -4,7 +4,7 @@ function computeRow(task) {
    var c_i = task.i;
    var max_iter = task.max_iter;
    var escape = task.escape * task.escape;
-   var values = [];
+   task.values = [];
    // Loop 2x in each row of the display
    for (var i = 0; i < task.width; i++) {
         var c_r = task.r_min + (task.r_max - task.r_min) * i/task.width;
