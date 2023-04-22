@@ -43,3 +43,14 @@ function processWork(worker, workerResults) {
     drawRow(workerResults);
     reassignWorker(worker);
 }
+// Give worker a new assignment
+function reassignWorker(worker) {
+    var row = nextRow++;
+    if (row >= canvas.height) {
+        worker.idle = true;
+    } else {
+        var task = createTask(row);
+        worker.idle = false;
+        worker.postMessage(task);
+    }
+}
