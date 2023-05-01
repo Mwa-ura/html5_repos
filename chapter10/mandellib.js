@@ -31,8 +31,8 @@ function createTask(row) {
 // Map a large set of numbers into an array of rgb colors.
 function makePalette() {
     function wrap(x) {
-       x = ((x + 255) & 0X1ff) - 256; 
-       if (x > 0) x = -x;
+       x = ((x + 256) & 0x1ff) - 256; 
+       if (x < 0) x = -x;
        return x;
     }
     for (var i = 0; i <= this.max_iter; i++) {
