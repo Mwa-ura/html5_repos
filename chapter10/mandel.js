@@ -6,6 +6,10 @@ var generation = 0;
 window.onload = init; // call the handler when the page load fully.
 function init() {
     setUpGraphics(); // Get canvas context, set the size, etc.
+    // Onclick event call position x and y of click
+    canvas.onclick = function(event) {
+        handleClick(event.clientX, event.clientY);
+    };
     // Iterate though the workers.
     for (var i = 0; i < numberOfWorkers; i++) {
         // Create new worker
