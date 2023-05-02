@@ -6,7 +6,11 @@ var generation = 0;
 window.onload = init; // call the handler when the page load fully.
 function init() {
     setUpGraphics(); // Get canvas context, set the size, etc.
-    // Onclick event call position x and y of click
+    // Resize the canvas to windows size
+    window.onresize = function() {
+        resizeToWindow();
+    };
+    // Onclick event, call position x and y of click
     canvas.onclick = function(event) {
         handleClick(event.clientX, event.clientY);
     };
@@ -44,7 +48,10 @@ function startWorkers() {
 }
 // Hand results to drawRow to draw pixel in the canvas.
 function processWork(worker, workerResults) {
-    drawRow(workerResults);
+    // Check workers generation matches the current one
+    if (workerResults.generation == generation) {
+        drawRow(workerResults);
+    }
     reassignWorker(worker);
 }
 // Give worker a new assignment
@@ -73,4 +80,16 @@ function handleClick(x,y) {
     i_min = click_i + height/zoom;
 
     startWorkers(); //Restart the workers
+}
+// Make sure the canvas width and height match that of the window
+function resizeToWindow() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    var width = ((i_max - i_min) * canvas.width/canvas.height);
+    var r_mid = (r_max + r_min)/2;
+    r_min = r_mid - width/2;
+    r_max = r_mid + width/2;
+    rowData = ctx.createImageData(canvas.width, 1);
+
+    startWorkers(); // Restart workers
 }
