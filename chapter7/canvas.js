@@ -1,7 +1,7 @@
 window.onload = function() {
     var button = document.getElementById("previewButton");
     button.onclick = previewHandler;
-    getSales();
+    // getSales();
 };
 
 function previewHandler() {
@@ -116,6 +116,7 @@ function drawCircle(canvas, context) {
         context.drawImage(tweetBird, 20, 150, 70, 70);
     };
  }
+ /*
 function getSales() {
     var url = "http://localhost/~mwaura/sales.json";
    // var url = "http://gumball.wickedlysmart.com/gamball/gamball.html";
@@ -130,4 +131,4 @@ function getSales() {
         }
     };
     request.send(null);
-}
+} */
